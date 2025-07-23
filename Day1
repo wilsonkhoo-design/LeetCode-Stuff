@@ -1,0 +1,48 @@
+//remove-duplicates-from-sorted-array
+#include <iostream>
+#include <vector>
+
+using namespace std;
+vector<int> nums={1,1,2};
+class Solution {
+public:
+    
+    bool statusComplete = false;
+    bool DupesDetected= false;
+    int removeDuplicates(vector<int>& nums) {
+        while(!statusComplete){
+            while(!DupesDetected){
+                for(int i=0; i<nums.size();i++){
+                    for(int j=i+1; j<nums.size();j++){
+                    checkDupes();
+                    }
+                
+                }
+            }
+            DupesDetected = false;
+        }
+        return 0;
+    }
+
+    void checkDupes(){
+        for(int i=0; i<nums.size();i++){
+            for(int j=i+1; j<nums.size();j++){
+                if(nums[i]==nums[j]){
+                    nums.erase(nums.begin()+j);
+                    DupesDetected=true;
+                }
+                
+            }
+        }
+        statusComplete = true;
+    }
+
+    
+};
+int main() {
+    Solution solu;
+    solu.removeDuplicates(nums);
+    for(int i=0;i<nums.size();i++)
+    cout<<nums[i]<<"\n";
+    return 0;
+}
