@@ -1,0 +1,54 @@
+// https://leetcode.com/problems/find-right-interval/?envType=study-plan-v2&envId=binary-search
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+vector<vector<int>> intervals ={{3,4}, {2,3}, {1,2}};
+
+vector<int> Found(intervals.size());
+class Solution {
+public:
+    vector<int> findRightInterval(vector<vector<int>>& intervals) {
+        vector<int> IntervalsFound(intervals.size());
+        //Step 1 sort the intervals
+        sort(intervals.begin(),intervals.end());
+        
+        //Step 2 binary search
+        for(int i=0; i<intervals.size();i++){
+            int target = intervals[i][1];
+            IntervalsFound[i]=SearchingIntervals(intervals,target);
+        }
+        return IntervalsFound;
+    }
+    
+    int SearchingIntervals(vector<vector<int>>& intervals, int& target){
+            int left =0;
+            int right = intervals.size()-1;
+            
+            while(left<= right){
+                int mid = left+(right-left)/2;
+                
+                if(intervals[mid][0]==target){
+                    return mid;
+                   
+                }
+                else if(intervals[mid][0]>0)
+                left=mid+1;
+                
+                else
+                right=mid-1;
+                
+            }
+            return -1;
+    }
+};
+int main() {
+    // Write C++ code here
+    Solution solu;
+    Found=solu.findRightInterval(intervals);
+    for (const auto& val : Found) {
+    cout << val << " ";
+}
+    return 0;
+}
