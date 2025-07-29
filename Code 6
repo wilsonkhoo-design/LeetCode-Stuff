@@ -1,0 +1,47 @@
+//https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/description/?envType=study-plan-v2&envId=binary-search
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+vector<int> nums={5,7,7,8,8,10};
+
+class Solution {
+public:
+    vector<int> searchRange(vector<int>& nums, int target) {
+        
+        
+    }
+private:
+    int BinarySearch(vector<int>& nums, bool Direction){
+        int left =0;
+        int right =nums.size()-1;
+        int tempStorage;
+        
+        while(left<= right){
+            int mid = left +(right-left)/2;
+            
+            if(nums[mid]==target){
+                if(Direction){
+                    right=middle-1;
+                    tempStorage=mid;
+                }
+                else{
+                    left = middle+1;
+                    tempStorage=mid
+                }
+            }
+            else if(nums[mid]>target)
+            right=mid-1;
+            
+            else
+            left=mid+1;
+        }
+        return tempStorage<0?-1:tempStorage; 
+    }
+};
+int main() {
+    // Write C++ code here
+    Solution solu;
+    return 0;
+}
