@@ -4,31 +4,37 @@
 #include <algorithm>
 
 using namespace std;
-vector<int> nums={5,7,7,8,8,10};
+vector<int> nums={};
 
 class Solution {
 public:
     vector<int> searchRange(vector<int>& nums, int target) {
+        vector<int> results(2);
+       
+        results[0]=BinarySearch(nums,true,target);
+        results[1]=BinarySearch(nums,false,target);
         
+        
+        return results;
         
     }
 private:
-    int BinarySearch(vector<int>& nums, bool Direction){
+    int BinarySearch(vector<int>& nums, bool Direction, int& target){
         int left =0;
         int right =nums.size()-1;
-        int tempStorage;
+        int tempStorage=-1;
         
         while(left<= right){
             int mid = left +(right-left)/2;
             
             if(nums[mid]==target){
                 if(Direction){
-                    right=middle-1;
+                    right=mid-1;
                     tempStorage=mid;
                 }
                 else{
-                    left = middle+1;
-                    tempStorage=mid
+                    left = mid+1;
+                    tempStorage=mid;
                 }
             }
             else if(nums[mid]>target)
@@ -37,11 +43,16 @@ private:
             else
             left=mid+1;
         }
-        return tempStorage<0?-1:tempStorage; 
+        return tempStorage; 
     }
 };
 int main() {
     // Write C++ code here
     Solution solu;
+    vector<int> print = solu.searchRange(nums,0);
+    
+    for(int i=0;i<print.size();i++){
+        cout<<print[i]<<"\n";
+    }
     return 0;
 }
