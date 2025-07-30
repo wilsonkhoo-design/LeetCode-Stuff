@@ -1,0 +1,39 @@
+//https://leetcode.com/problems/time-based-key-value-store/description/?envType=study-plan-v2&envId=binary-search
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <string>
+
+using namespace std;
+
+
+class TimeMap {
+public:
+    vector<pair<string,vector<pair<int,string> >> storage;
+    TimeMap() {}
+    
+    void set(string key, string value, int timestamp) {
+        bool found = false;
+        for(int i=0; i<storage.size();i++){
+            if(storage[i].first == key) {
+                storage[i].second.push_back({timestamp,value});
+                sort(storage[i].second.begin(),storage[i].second.end());
+                found = true;
+                break;
+        }
+        }
+        if (!found) {
+            storage.push_back({key, {{timestamp,value}}});
+        }
+    }
+    
+    string get(string key, int timestamp) {
+        
+    }
+};
+int main() {
+    
+    Timemap solu;
+    
+    return 0;
+}
